@@ -11,6 +11,9 @@ public class GameInput : MonoBehaviour
     
     [SerializeField]
     private float moveByKeySpeed = 4f;
+
+    [SerializeField]
+    private bool accelerateMovement;
     
     [SerializeField]
     private float lookSpeed = 2f;
@@ -81,7 +84,11 @@ public class GameInput : MonoBehaviour
 
     private void Update()
     {
-        float moveSpeed = moveByKeySpeed * Mathf.Pow(2, (Time.time - timeMovingStarted));
+        float moveSpeed = moveByKeySpeed;
+        if (accelerateMovement)
+        {
+            moveSpeed *= Mathf.Pow(2, (Time.time - timeMovingStarted));
+        }          
 
         if (buttonCameraForward)
         {

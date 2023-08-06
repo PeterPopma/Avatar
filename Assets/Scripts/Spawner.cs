@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] float minZ = -1500;
     [SerializeField] float maxZ = 1500;
     [SerializeField] float height = 100;
+    [SerializeField] float maxItems = 100;
     private int numItems;
 
     float timeLastSpawn;
@@ -44,7 +45,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (secondsBetweenSpawns>0 && Time.time - timeLastSpawn > secondsBetweenSpawns)
+        if (secondsBetweenSpawns>0 && Time.time - timeLastSpawn > secondsBetweenSpawns && numItems < maxItems)
         {
             SpawnNewObject();
             timeLastSpawn = Time.time;
